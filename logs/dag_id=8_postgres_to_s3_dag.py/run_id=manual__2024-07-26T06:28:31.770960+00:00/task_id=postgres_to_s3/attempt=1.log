@@ -1,0 +1,47 @@
+[2024-07-26T06:28:32.362+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-07-26T06:28:32.385+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 manual__2024-07-26T06:28:31.770960+00:00 [queued]>
+[2024-07-26T06:28:32.387+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 manual__2024-07-26T06:28:31.770960+00:00 [queued]>
+[2024-07-26T06:28:32.388+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 6
+[2024-07-26T06:28:32.392+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2024-07-26 06:28:31.770960+00:00
+[2024-07-26T06:28:32.395+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=894) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-07-26T06:28:32.396+0000] {standard_task_runner.py:64} INFO - Started process 895 to run task
+[2024-07-26T06:28:32.396+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', '8_postgres_to_s3_dag.py', 'postgres_to_s3', 'manual__2024-07-26T06:28:31.770960+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/8_postgres_to_s3_dag.py', '--cfg-path', '/tmp/tmpkki2tgiy']
+[2024-07-26T06:28:32.397+0000] {standard_task_runner.py:91} INFO - Job 20: Subtask postgres_to_s3
+[2024-07-26T06:28:32.417+0000] {task_command.py:426} INFO - Running <TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 manual__2024-07-26T06:28:31.770960+00:00 [running]> on host ecd5bbc03de3
+[2024-07-26T06:28:32.447+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='8_postgres_to_s3_dag.py' AIRFLOW_CTX_TASK_ID='postgres_to_s3' AIRFLOW_CTX_EXECUTION_DATE='2024-07-26T06:28:31.770960+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-26T06:28:31.770960+00:00'
+[2024-07-26T06:28:32.448+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-07-26T06:28:32.460+0000] {base.py:84} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-07-26T06:28:32.472+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-07-26T06:28:32.472+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/8_postgres_to_s3_dag.py", line 21, in postgres_to_s3
+    cursor.execute("select * from order where date <= '20220501'")
+psycopg2.errors.SyntaxError: syntax error at or near "order"
+LINE 1: select * from order where date <= '20220501'
+                      ^
+
+[2024-07-26T06:28:32.478+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=8_postgres_to_s3_dag.py, task_id=postgres_to_s3, run_id=manual__2024-07-26T06:28:31.770960+00:00, execution_date=20240726T062831, start_date=20240726T062832, end_date=20240726T062832
+[2024-07-26T06:28:32.483+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 20 for task postgres_to_s3 (syntax error at or near "order"
+LINE 1: select * from order where date <= '20220501'
+                      ^
+; 895)
+[2024-07-26T06:28:32.496+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-07-26T06:28:32.502+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-26T06:28:32.503+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -41,7 +41,8 @@ To
     image: extended_airflow:latest
 >>>
 
-# Host PostGres database on local machine
+# Host PostGres database on docker
+This will be required for exercise 6.
 1. Add ports to postgres settings in docker-compose
 ```
     services:
@@ -77,7 +78,7 @@ Add ports here:
     - Set table name as **test**
 
 4. Add database to airflow
-    - Goto **Admins** in the top bar and select **Connections**
+    - Go to **Admins** in the top bar and select **Connections**
     - Press **+** to add new record
         - Connection Id: postgres_localhost
         - Connection Type: Postgres
@@ -88,6 +89,47 @@ Add ports here:
         - Login: airflow
         - Password: airflow
         - Port: 5432
+
+# Host Minio S3 on docker
+[Tutorial](https://collabnix.com/running-minio-using-docker-desktop-in-5-minutes/) \
+[AWS Provider Docs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/index.html) \
+[AWS Provider Subpackages](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/index.html)
+
+1. On a seperate terminal, run
+>>>
+    docker run \
+        -p 9000:9000 \
+        -p 9001:9001 \
+        -e "MINIO_ROOT_USER=admin" \
+        -e "MINIO_ROOT_PASSWORD=password" \
+        minio/minio server /data --console-address ":9001" 
+>>>
+
+2. Get airflow-webserver id. Either check docker desktip or run `docker ps`
+3. Run `docker exec -it [DOCKER_ID] bash`
+4. Run `pip list grep amazon`
+5. Login to Minio
+    - username: admin
+    - password: password
+6. Create Access Key
+    - Go to **Access Keys** in the side bar
+    - Press **Create Access Key**
+    - Copy down the **Access Key** and **Secret Access Key**
+5. Add Minio S3 to airflow
+    - Go to **Admins** in the top bar and select **Connections**
+    - Press **+** to add new record
+        - Connection Id: minio_localhost
+        - Connection Type: Amazon Web Services
+        - AWS Access Key ID: admin
+        - AWS Secret Access Key: password
+        - Extra: 
+>>>
+    {
+        "aws_access_key_id": "3m4TW0TPnnMWUYqht1c7",
+        "aws_secret_access_key": "ieRvSoh2s91wzZcD7Iz3x1cMmH3JNwAcEIdlB2sM",
+        "endpoint_url": "http://host.docker.internal:9000"
+    }
+>>>
 
 # Run Apache Airflow
 1. Build Image with requirements

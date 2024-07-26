@@ -4,45 +4,33 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 default_args = {
-    "owner": "Pattakit",
+    "owner": "Bossixd",
     "retries": 5,
     "retry_delay": timedelta(minutes=2)
 }
 
-def greet(ti):
-    first_name = ti.xcom_pull(task_ids='get_name', key='first_name')
-    last_name = ti.xcom_pull(task_ids='get_name', key='last_name')
-    age = ti.xcom_pull(task_ids='get_age', key='age')
+# Define greet function to print out first_name, last_name, and age
+# This function will be used in the PythonOperator
+def greet(first_name, last_name, age):
     print(f'Hello World! My name is {first_name} {last_name}, and I am {age} years old.')
-
-def get_name(ti):
-    ti.xcom_push(key='first_name', value='Pattakit')
-    ti.xcom_push(key='last_name', value='Charoensedtakul')
-    print(type(ti))
-
-def get_age(ti):
-    ti.xcom_push(key='age', value=17)
 
 with DAG(
     dag_id='python_dag',
     description='dag with python operator',
     start_date=datetime(2024, 7, 23, 2),
-    schedule='@daily',
+    schedule_interval='@daily',
     default_args=default_args
 ) as dag:
+    # Create Task1
+    # This task will print out the first_name, last_name, and age
     task1 = PythonOperator(
         task_id='greet',
         python_callable=greet,
+        op_kwargs={
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'age': 20
+        }
     )
 
-    task2 = PythonOperator(
-        task_id='get_name',
-        python_callable=get_name
-    )
-
-    task3 = PythonOperator(
-        task_id='get_age',
-        python_callable=get_age
-    )
-
-    [task2, task3] >> task1
+    task1

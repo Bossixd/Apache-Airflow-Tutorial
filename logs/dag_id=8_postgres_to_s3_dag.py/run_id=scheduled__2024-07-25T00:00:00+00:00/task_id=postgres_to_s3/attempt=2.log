@@ -1,0 +1,52 @@
+[2024-07-26T06:27:47.933+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-07-26T06:27:47.952+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 scheduled__2024-07-25T00:00:00+00:00 [queued]>
+[2024-07-26T06:27:47.960+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 scheduled__2024-07-25T00:00:00+00:00 [queued]>
+[2024-07-26T06:27:47.960+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 6
+[2024-07-26T06:27:47.966+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2024-07-25 00:00:00+00:00
+[2024-07-26T06:27:47.970+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', '8_postgres_to_s3_dag.py', 'postgres_to_s3', 'scheduled__2024-07-25T00:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/8_postgres_to_s3_dag.py', '--cfg-path', '/tmp/tmp1a5zuk9u']
+[2024-07-26T06:27:47.970+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=876) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-07-26T06:27:47.971+0000] {standard_task_runner.py:91} INFO - Job 18: Subtask postgres_to_s3
+[2024-07-26T06:27:47.971+0000] {standard_task_runner.py:64} INFO - Started process 877 to run task
+[2024-07-26T06:27:47.992+0000] {task_command.py:426} INFO - Running <TaskInstance: 8_postgres_to_s3_dag.py.postgres_to_s3 scheduled__2024-07-25T00:00:00+00:00 [running]> on host ecd5bbc03de3
+[2024-07-26T06:27:48.020+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='8_postgres_to_s3_dag.py' AIRFLOW_CTX_TASK_ID='postgres_to_s3' AIRFLOW_CTX_EXECUTION_DATE='2024-07-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-25T00:00:00+00:00'
+[2024-07-26T06:27:48.020+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-07-26T06:27:48.030+0000] {base.py:84} INFO - Using connection ID 'minio_localhost' for task execution.
+[2024-07-26T06:27:48.031+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-07-26T06:27:48.031+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/8_postgres_to_s3_dag.py", line 18, in postgres_to_s3
+    conn = hook.get_conn()
+           ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/postgres/hooks/postgres.py", line 175, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 121, in connect
+    dsn = _ext.make_dsn(dsn, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/extensions.py", line 167, in make_dsn
+    parse_dsn(dsn)
+psycopg2.ProgrammingError: invalid dsn: invalid connection option "aws_access_key_id"
+
+[2024-07-26T06:27:48.036+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=8_postgres_to_s3_dag.py, task_id=postgres_to_s3, run_id=scheduled__2024-07-25T00:00:00+00:00, execution_date=20240725T000000, start_date=20240726T062747, end_date=20240726T062748
+[2024-07-26T06:27:48.040+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 18 for task postgres_to_s3 (invalid dsn: invalid connection option "aws_access_key_id"
+; 877)
+[2024-07-26T06:27:48.075+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-07-26T06:27:48.082+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-07-26T06:27:48.082+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

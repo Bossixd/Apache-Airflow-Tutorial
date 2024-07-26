@@ -11,7 +11,7 @@ Tasks are units of work in a DAG. It is represented as a node in the DAG graph, 
 To summarize, the operator determines what will be done, the task implements an operator by defining specific values for that operator, and DAG is a collection of tasks which reflect their relationships and dependencies. 
 
 ## Apache Airflow's Architecture:
-![Apache Airflow Architecture](assets/architecture.png)
+![Apache Airflow Architecture](../assets/architecture.png)
 
 **Data Engineers** create and manage the DAGs through the **User Interface** of the **Web Server**. The created DAGs are also visible to the **Scheduler** and **Workers**. These components work together to complete the lifecycle of a DAG.
 
@@ -21,5 +21,3 @@ To summarize, the operator determines what will be done, the task implements an 
     - The Executor is shown separately above, since it is commonly discussed within Airflow and in the documentation, but in reality it is NOT a separate process, but run within the Scheduler.
 - Metadata Database: Airflow uses a SQL database to store metadata about the data pipelines being run. In the diagram above, this is represented as Postgres which is extremely popular with Airflow. Alternate databases supported with Airflow include MySQL.
 - airflow.cfg is the Airflow configuration file which is accessed by the Web Server, Scheduler, and Workers.
-
-# 1 First DAG
