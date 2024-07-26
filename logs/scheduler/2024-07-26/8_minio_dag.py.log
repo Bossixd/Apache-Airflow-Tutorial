@@ -2392,3 +2392,24 @@
 [2024-07-26T10:08:05.080+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:08:05.080+0000] {dag.py:3089} INFO - Sync 1 DAGs
 [2024-07-26T10:08:05.088+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:08:05.088+0000] {dag.py:3947} INFO - Setting next_dagrun for minio_dag to 2024-07-26 00:00:00+00:00, run_after=2024-07-27 00:00:00+00:00
 [2024-07-26T10:08:05.093+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/8_minio_dag.py took 0.041 seconds
+[2024-07-26T10:08:35.630+0000] {processor.py:161} INFO - Started process (PID=164) to work on /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:08:35.630+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/8_minio_dag.py for tasks to queue
+[2024-07-26T10:08:35.631+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:08:35.631+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:08:35.635+0000] {processor.py:840} INFO - DAG(s) 'minio_dag' retrieved from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:08:35.643+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:08:35.643+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2024-07-26T10:08:35.651+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:08:35.651+0000] {dag.py:3947} INFO - Setting next_dagrun for minio_dag to 2024-07-26 00:00:00+00:00, run_after=2024-07-27 00:00:00+00:00
+[2024-07-26T10:08:35.656+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/8_minio_dag.py took 0.028 seconds
+[2024-07-26T10:09:06.307+0000] {processor.py:161} INFO - Started process (PID=179) to work on /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:06.308+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/8_minio_dag.py for tasks to queue
+[2024-07-26T10:09:06.309+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:06.309+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:06.313+0000] {processor.py:840} INFO - DAG(s) 'minio_dag' retrieved from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:06.323+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:06.323+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2024-07-26T10:09:06.333+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:06.333+0000] {dag.py:3947} INFO - Setting next_dagrun for minio_dag to 2024-07-26 00:00:00+00:00, run_after=2024-07-27 00:00:00+00:00
+[2024-07-26T10:09:06.348+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/8_minio_dag.py took 0.043 seconds
+[2024-07-26T10:09:37.167+0000] {processor.py:161} INFO - Started process (PID=194) to work on /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:37.167+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/8_minio_dag.py for tasks to queue
+[2024-07-26T10:09:37.168+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:37.168+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:37.173+0000] {processor.py:840} INFO - DAG(s) 'minio_dag' retrieved from /opt/airflow/dags/8_minio_dag.py
+[2024-07-26T10:09:37.187+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:37.186+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2024-07-26T10:09:37.195+0000] {logging_mixin.py:188} INFO - [2024-07-26T10:09:37.195+0000] {dag.py:3947} INFO - Setting next_dagrun for minio_dag to 2024-07-26 00:00:00+00:00, run_after=2024-07-27 00:00:00+00:00
+[2024-07-26T10:09:37.202+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/8_minio_dag.py took 0.043 seconds

@@ -38,7 +38,7 @@ Change
 
 To
 >>>
-    image: extended_airflow:latest
+    image: ${AIRFLOW_IMAGE_NAME:-extended_airflow:latest}
 >>>
 
 # Host PostGres database on docker
