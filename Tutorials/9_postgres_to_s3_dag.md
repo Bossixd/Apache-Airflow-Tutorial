@@ -1,3 +1,4 @@
+# Exercise 9 | Postgres to S3
 1. Create database in postgres
     - Right click on **Databases** and press **Create New Database** with name test
     - Right click **test** database and set as default
